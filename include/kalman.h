@@ -46,8 +46,7 @@ typedef struct
     matrix_t B;
 
     /*!
-    * \brief Input covariance/uncertainty matrix
-    * \see B
+    * \brief Process noise covariance matrix
     */
     matrix_t Q;
 
@@ -111,7 +110,7 @@ typedef struct
     matrix_t H;
 
     /*!
-    * \brief Process noise covariance matrix
+    * \brief Observation covariance matrix
     * \see H
     */
     matrix_t R;
@@ -370,7 +369,7 @@ HOT PURE EXTERN_INLINE_KALMAN matrix_t* kalman_get_input_transition(kalman_t *kf
 * \param[in] kf The Kalman Filter structure
 * \return The input covariance matrix.
 */
-HOT PURE EXTERN_INLINE_KALMAN matrix_t* kalman_get_input_covariance(kalman_t *kf)
+HOT PURE EXTERN_INLINE_KALMAN matrix_t* kalman_get_process_noise(kalman_t *kf)
 {
     return &(kf->Q);
 }
@@ -396,11 +395,11 @@ HOT PURE EXTERN_INLINE_KALMAN matrix_t* kalman_get_measurement_transformation(ka
 }
 
 /*!
-* \brief Gets a pointer to the process noise matrix R.
+* \brief Gets a pointer to the process noise matrix Q.
 * \param[in] kfm The Kalman Filter measurement structure.
 * \return The process noise matrix R.
 */
-HOT PURE EXTERN_INLINE_KALMAN matrix_t* kalman_get_process_noise(kalman_measurement_t *kfm)
+HOT PURE EXTERN_INLINE_KALMAN matrix_t* kalman_get_observation_noise(kalman_measurement_t *kfm)
 {
     return &(kfm->R);
 }
