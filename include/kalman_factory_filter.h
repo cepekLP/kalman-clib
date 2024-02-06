@@ -96,8 +96,8 @@
 #define __KALMAN_u_ROWS     KALMAN_NUM_INPUTS
 #define __KALMAN_u_COLS     1
 
-#define __KALMAN_Q_ROWS     KALMAN_NUM_INPUTS
-#define __KALMAN_Q_COLS     KALMAN_NUM_INPUTS
+#define __KALMAN_Q_ROWS     KALMAN_NUM_STATES
+#define __KALMAN_Q_COLS     KALMAN_NUM_STATES
 
 #define __KALMAN_aux_ROWS     ((KALMAN_NUM_STATES > KALMAN_NUM_INPUTS) ? KALMAN_NUM_STATES : KALMAN_NUM_INPUTS)
 #define __KALMAN_aux_COLS     1
@@ -160,6 +160,8 @@ static matrix_data_t __KALMAN_BUFFER_P[__KALMAN_P_ROWS * __KALMAN_P_COLS];
 #pragma message("Creating Kalman filter x buffer: " STRINGIFY(__KALMAN_BUFFER_x))
 static matrix_data_t __KALMAN_BUFFER_x[__KALMAN_x_ROWS * __KALMAN_x_COLS];
 
+#pragma message("Creating Kalman filter Q buffer: " STRINGIFY(__KALMAN_BUFFER_Q))
+static matrix_data_t __KALMAN_BUFFER_Q[__KALMAN_Q_ROWS * __KALMAN_Q_COLS];
 /************************************************************************/
 /* Construct Kalman filter buffers: Inputs                              */
 /************************************************************************/
@@ -173,9 +175,6 @@ static matrix_data_t __KALMAN_BUFFER_x[__KALMAN_x_ROWS * __KALMAN_x_COLS];
 #pragma message("Creating Kalman filter B buffer: " STRINGIFY(__KALMAN_BUFFER_B))
 static matrix_data_t __KALMAN_BUFFER_B[__KALMAN_B_ROWS * __KALMAN_B_COLS];
 
-#pragma message("Creating Kalman filter Q buffer: " STRINGIFY(__KALMAN_BUFFER_Q))
-static matrix_data_t __KALMAN_BUFFER_Q[__KALMAN_Q_ROWS * __KALMAN_Q_COLS];
-
 #pragma message("Creating Kalman filter u buffer: " STRINGIFY(__KALMAN_BUFFER_u))
 static matrix_data_t __KALMAN_BUFFER_u[__KALMAN_x_ROWS * __KALMAN_u_COLS];
 
@@ -183,9 +182,6 @@ static matrix_data_t __KALMAN_BUFFER_u[__KALMAN_x_ROWS * __KALMAN_u_COLS];
 
 #pragma message("Skipping Kalman filter B buffer: (zero inputs)")
 #define __KALMAN_BUFFER_B ((matrix_data_t*)0)
-
-#pragma message("Skipping Kalman filter Q buffer: (zero inputs)")
-#define __KALMAN_BUFFER_Q ((matrix_data_t*)0)
 
 #pragma message("Skipping Kalman filter u buffer: (zero inputs)")
 #define __KALMAN_BUFFER_u ((matrix_data_t*)0)
@@ -234,10 +230,10 @@ static kalman_t* KALMAN_FUNCTION_NAME(init)()
     for (i = 0; i < __KALMAN_x_ROWS * __KALMAN_x_COLS; ++i) { __KALMAN_BUFFER_x[i] = 0; }
     for (i = 0; i < __KALMAN_A_ROWS * __KALMAN_A_COLS; ++i) { __KALMAN_BUFFER_A[i] = 0; }
     for (i = 0; i < __KALMAN_P_ROWS * __KALMAN_P_COLS; ++i) { __KALMAN_BUFFER_P[i] = 0; }
+    for (i = 0; i < __KALMAN_Q_ROWS * __KALMAN_Q_COLS; ++i) { __KALMAN_BUFFER_Q[i] = 0; }
 
 #if KALMAN_NUM_INPUTS > 0
     for (i = 0; i < __KALMAN_B_ROWS * __KALMAN_B_COLS; ++i) { __KALMAN_BUFFER_B[i] = 0; }
-    for (i = 0; i < __KALMAN_Q_ROWS * __KALMAN_Q_COLS; ++i) { __KALMAN_BUFFER_Q[i] = 0; }
     for (i = 0; i < __KALMAN_u_ROWS * __KALMAN_x_COLS; ++i) { __KALMAN_BUFFER_u[i] = 0; }
 #endif
 
