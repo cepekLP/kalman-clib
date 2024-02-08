@@ -255,8 +255,15 @@ void kalman_measurement_initialize(
 	matrix_data_t *aux, matrix_data_t *S_inv, matrix_data_t *temp_HP,
 	matrix_data_t *temp_PHt, matrix_data_t *temp_KHP) COLD;
 
-void kalman_init_process_noise(kalman_t *kf, uint8_t size, float dt,
-							   float variance);
+/*!
+ * \brief Initializes the process noise matrix Q
+ * \param[in] kf The Kalman Filter structure to initialize
+ * \param[in] size The size of the process noise matrix
+ * \param[in] dt The time step
+ * \param[in] variance The variance of the process noise
+ */
+* / void kalman_init_process_noise(kalman_t *kf, uint8_t size, float dt,
+								   float variance);
 
 /*!
  * \brief Performs the time update / prediction step of only the state vector
