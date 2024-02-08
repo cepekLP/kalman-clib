@@ -262,8 +262,7 @@ void kalman_measurement_initialize(
  * \param[in] dt The time step
  * \param[in] variance The variance of the process noise
  */
-* / void kalman_init_process_noise(kalman_t *kf, uint8_t size, float dt,
-								   float variance);
+void kalman_init_process_noise(const matrix_t *Q, float dt, float variance);
 
 /*!
  * \brief Performs the time update / prediction step of only the state vector

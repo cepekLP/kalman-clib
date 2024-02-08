@@ -106,17 +106,15 @@ void kalman_measurement_initialize(
 	matrix_init(&kfm->temporary.KHP, num_states, num_states, temp_KHP);
 }
 
-void kalman_init_process_noise(kalman_t *kf, uint8_t size, float dt,
-							   float variance)
+void kalman_init_process_noise(const matrix_t *Q, float dt, float variance)
 {
-	matrix_t *RESTRICT const Q = &kf->Q;
-	if (size == 2)
+	if (Q->cols == 2)
 	{
 		matrix_set_symmetric(Q, 0, 0, 0.25f * variance * pow(dt, 4));
 		matrix_set_symmetric(Q, 0, 1, 0.5f * variance * pow(dt, 3));
 		matrix_set_symmetric(Q, 1, 1, variance * pow(dt, 2));
 	}
-	else if (size == 3)
+	else if (Q->cols == 3)
 	{
 		matrix_set_symmetric(Q, 0, 0, 0.25f * variance * pow(dt, 4));
 		matrix_set_symmetric(Q, 0, 1, 0.5f * variance * pow(dt, 3));
@@ -125,7 +123,7 @@ void kalman_init_process_noise(kalman_t *kf, uint8_t size, float dt,
 		matrix_set_symmetric(Q, 1, 2, variance * dt);
 		matrix_set_symmetric(Q, 2, 2, variance);
 	}
-	else if (size == 4)
+	else if (Q->cols == 4)
 	{
 		matrix_set_symmetric(Q, 0, 0, variance * pow(dt, 6) / 36.0f);
 		matrix_set_symmetric(Q, 0, 1, variance * pow(dt, 5) / 12.0f);
