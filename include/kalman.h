@@ -221,7 +221,7 @@ typedef struct
  * ({\ref num_states} x {\ref num_inputs})
  */
 void kalman_filter_initialize(kalman_t *kf, uint_fast8_t num_states,
-							  uint_fast8_t num_inputs, matrix_data_t *A,
+							  uint_fast8_t num_inputs, matrix_data_t *F,
 							  matrix_data_t *x, matrix_data_t *B,
 							  matrix_data_t *u, matrix_data_t *P,
 							  matrix_data_t *Q, matrix_data_t *aux,

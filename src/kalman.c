@@ -26,14 +26,14 @@
  * ({\ref num_states} x {\ref num_inputs})
  */
 void kalman_filter_initialize(kalman_t *kf, uint_fast8_t num_states,
-							  uint_fast8_t num_inputs, matrix_data_t *A,
+							  uint_fast8_t num_inputs, matrix_data_t *F,
 							  matrix_data_t *x, matrix_data_t *B,
 							  matrix_data_t *u, matrix_data_t *P,
 							  matrix_data_t *Q, matrix_data_t *aux,
 							  matrix_data_t *predictedX, matrix_data_t *temp_P,
 							  matrix_data_t *temp_BQ)
 {
-	matrix_init(&kf->A, num_states, num_states, A);
+	matrix_init(&kf->F, num_states, num_states, F);
 	matrix_init(&kf->P, num_states, num_states, P);
 	matrix_init(&kf->x, num_states, 1, x);
 
