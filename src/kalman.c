@@ -196,7 +196,7 @@ void kalman_predict_P(register kalman_t *const kf)
  * \brief Performs the time update / prediction step of only the state
  * covariance matrix \param[in] kf The Kalman Filter structure to predict with.
  */
-void kalman_predict_Q_tuned(register kalman_t *const kf, matrix_data_t lambda)
+void kalman_predict_P_tuned(register kalman_t *const kf, matrix_data_t lambda)
 {
 	// matrices and vectors
 	const matrix_t *RESTRICT const A = &kf->F;

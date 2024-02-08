@@ -278,9 +278,9 @@ void kalman_predict_x(register kalman_t *const kf) HOT;
  * covariance matrix \param[in] kf The Kalman Filter structure to predict with.
  *
  * \see kalman_predict
- * \see kalman_predict_Q_tuned
+ * \see kalman_predict_P_tuned
  */
-void kalman_predict_Q(register kalman_t *const kf) HOT;
+void kalman_predict_P(register kalman_t *const kf) HOT;
 
 /*!
  * \brief Performs the time update / prediction step of only the state
@@ -289,7 +289,7 @@ void kalman_predict_Q(register kalman_t *const kf) HOT;
  * \see kalman_predict_tuned
  * \see kalman_predict_Q
  */
-void kalman_predict_Q_tuned(register kalman_t *const kf,
+void kalman_predict_P_tuned(register kalman_t *const kf,
 							matrix_data_t lambda) HOT;
 
 /*!
