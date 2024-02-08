@@ -1,0 +1,45 @@
+fail_fast: false
+exclude: "^(PCB|Housing)/.*"
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files # prevents giant files from being committed.
+      - id: check-case-conflict # checks for files that would conflict in case-insensitive filesystems.
+      - id: check-merge-conflict # checks for files that contain merge conflict strings.
+      - id: check-yaml # checks yaml files for parseable syntax.
+      - id: detect-private-key # detects the presence of private keys.
+      - id: end-of-file-fixer # ensures that a file is either empty, or ends with one newline.
+      - id: fix-byte-order-marker # removes utf-8 byte order marker.
+      - id: mixed-line-ending # replaces or checks mixed line ending.
+      - id: trailing-whitespace # trims trailing whitespace.
+
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v15.0.7
+    hooks:
+      - id: clang-format
+        args: ["--style=file", "-i"]
+
+  - repo: local
+    hooks:
+    - id: cppcheck
+      name: cppcheck
+      entry: cppcheck
+      language: system
+      args:
+        [
+          "--enable=all",
+          #"--enable=warning,style,performance,portability",
+           "--suppress=unmatchedSuppression",
+           "--suppress=missingIncludeSystem",
+           "--suppress=missingInclude",
+           "--suppress=unusedFunction",
+           "--suppress=unusedStructMember",
+           "--suppress=constParameterPointer",
+           "--inline-suppr",
+          "--error-exitcode=1",
+          "--check-level=exhaustive",
+          "-q",
+          "-f"
+        ]
+      files: a$ #\.(c|h|cpp|hpp)$

@@ -1,0 +1,26 @@
+---
+BasedOnStyle: LLVM
+AlignConsecutiveMacros: 'true'
+#BreakBeforeBraces: Allman
+BraceWrapping:
+  AfterClass:      true
+  AfterControlStatement: true
+  AfterEnum:       true # <-- You need this
+  AfterFunction:   true
+  AfterNamespace:  true
+  AfterObjCDeclaration: true
+  AfterStruct:     true
+  AfterUnion:      true
+  AfterExternBlock: false # <-- And this
+  BeforeCatch:     true
+  BeforeElse:      true
+  IndentBraces:    false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+BreakBeforeBraces: Custom # <-- And this
+IndentWidth: '4'
+TabWidth: '4'
+UseTab: Always
+
+...
