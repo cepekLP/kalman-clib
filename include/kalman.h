@@ -410,7 +410,7 @@ kalman_get_input_transition(kalman_t *kf)
 }
 
 /*!
- * \brief Gets a pointer to the input covariance matrix P.
+ * \brief Gets a pointer to the process noise matrix Q.
  * \param[in] kf The Kalman Filter structure
  * \return The input covariance matrix.
  */
