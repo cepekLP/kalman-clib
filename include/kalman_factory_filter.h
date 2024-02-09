@@ -150,6 +150,7 @@
 #define __KALMAN_BUFFER_A   KALMAN_BUFFER_NAME(A)
 #define __KALMAN_BUFFER_P   KALMAN_BUFFER_NAME(P)
 #define __KALMAN_BUFFER_x   KALMAN_BUFFER_NAME(x)
+#define __KALMAN_BUFFER_Q   KALMAN_BUFFER_NAME(Q)
 
 #pragma message("Creating Kalman filter A buffer: " STRINGIFY(__KALMAN_BUFFER_A))
 static matrix_data_t __KALMAN_BUFFER_A[__KALMAN_A_ROWS * __KALMAN_A_COLS];
@@ -169,7 +170,6 @@ static matrix_data_t __KALMAN_BUFFER_Q[__KALMAN_Q_ROWS * __KALMAN_Q_COLS];
 #if KALMAN_NUM_INPUTS > 0
 
 #define __KALMAN_BUFFER_B   KALMAN_BUFFER_NAME(B)
-#define __KALMAN_BUFFER_Q   KALMAN_BUFFER_NAME(Q)
 #define __KALMAN_BUFFER_u   KALMAN_BUFFER_NAME(u)
 
 #pragma message("Creating Kalman filter B buffer: " STRINGIFY(__KALMAN_BUFFER_B))

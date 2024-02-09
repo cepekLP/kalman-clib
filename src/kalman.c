@@ -38,7 +38,7 @@ void kalman_filter_initialize(kalman_t *kf, uint_fast8_t num_states,
 	matrix_init(&kf->x, num_states, 1, x);
 
 	matrix_init(&kf->B, num_states, num_inputs, B);
-	matrix_init(&kf->Q, num_inputs, num_inputs, Q);
+	matrix_init(&kf->Q, num_states, num_states, Q);
 	matrix_init(&kf->u, num_inputs, 1, u);
 
 	// set auxiliary vector
