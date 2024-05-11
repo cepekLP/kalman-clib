@@ -29,5 +29,3 @@ _ReSharper*/
 $tf*/
 *.sdf
 *.opensdf
-/[cmake]*
-/CMakeLists.txt
