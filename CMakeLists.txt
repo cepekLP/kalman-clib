@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.20)
 # ==============================================================================
 # Project
 # ==============================================================================
-project(Kalman-clib C)
-add_library(Kalman-clib INTERFACE)
+project(kalman-clib C)
+add_library(kalman-clib INTERFACE)
 
 # ==============================================================================
 # C standard
