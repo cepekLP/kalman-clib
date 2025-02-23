@@ -4,35 +4,38 @@ cmake_minimum_required(VERSION 3.20)
 # Project
 # ==============================================================================
 project(kalman-clib C)
-add_library(kalman-clib INTERFACE)
+add_library(kalman-clib STATIC)
 
 # ==============================================================================
 # C standard
 # ==============================================================================
 set(CMAKE_C_STANDARD 11)
+message("include: ${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # ==============================================================================
 # Headers
 # ==============================================================================
-target_include_directories(TelemetrySensors INTERFACE
-   include
+target_include_directories(kalman-clib PUBLIC
+    include
 )
 
 # ==============================================================================
 # Sources
 # ==============================================================================
-target_sources(TelemetrySensors INTERFACE
-    src/cholesky.c
-    src/kalman.c
-    src/matrix.c
+target_sources(kalman-clib PRIVATE
+     src/cholesky.c
+     src/kalman.c
+     src/matrix.c
 )
+
+# ==============================================================================
+# Disable warnings and pragmas
+# ==============================================================================
+target_compile_options(kalman-clib PRIVATE -w -Wno-pragmas)
+#target_compile_options(kalman-clib INTERFACE -w -Wno-pragmas)
 
 # ==============================================================================
 # Linker
 # ==============================================================================
-
-target_link_directories(TelemetrySensors INTERFACE
-)
-
-target_link_libraries(TelemetrySensors INTERFACE
+target_link_libraries(kalman-clib PUBLIC
 )
